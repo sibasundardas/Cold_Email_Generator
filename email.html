@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cold Email Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 flex items-center justify-center min-h-screen p-4">
+
+    <div class="w-full max-w-2xl bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8">
+        <div class="text-center mb-6">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white">Cold Email Generator</h1>
+            <p class="text-gray-600 dark:text-gray-400 mt-2">Enter the details below to generate your personalized application email.</p>
+        </div>
+
+        <!-- Input Form -->
+        <div class="space-y-4 mb-6">
+            <div>
+                <label for="recruiterEmail" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Recruiter's Email</label>
+                <input type="email" id="recruiterEmail" class="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="e.g., recruiter@company.com">
+            </div>
+            <div>
+                <label for="companyName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Company Name</label>
+                <input type="text" id="companyName" class="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="e.g., Google, Microsoft">
+            </div>
+            <div>
+                <label for="roleName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Role Name</label>
+                <input type="text" id="roleName" class="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="e.g., Software Engineer Intern">
+            </div>
+             <div>
+                <label for="platform" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Where did you find the role?</label>
+                <input type="text" id="platform" class="w-full px-4 py-2 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="e.g., LinkedIn, their careers page">
+            </div>
+        </div>
+
+        <div class="flex justify-center mb-6">
+            <button id="generateBtn" class="w-full md:w-auto bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                Generate Email
+            </button>
+        </div>
+
+        <!-- Output Section -->
+        <div id="output" class="hidden fade-in space-y-6">
+            <!-- Subject Output -->
+            <div>
+                <div class="flex justify-between items-center mb-2">
+                     <h2 class="text-xl font-semibold">Subject</h2>
+                     <button id="copySubjectBtn" class="bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-200 font-semibold py-1 px-3 rounded-lg text-sm transition">Copy</button>
+                </div>
+                <div id="subjectOutput" class="p-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-900/50 text-sm md:text-base">
+                    <!-- Generated subject will appear here -->
+                </div>
+            </div>
+
+            <!-- Body Output -->
+            <div>
+                <div class="flex justify-between items-center mb-2">
+                     <h2 class="text-xl font-semibold">Email Body</h2>
+                     <button id="copyBodyBtn" class="bg-gray-200 dark:bg-gray-600 hover:bg-gray-300 dark:hover:bg-gray-500 text-gray-700 dark:text-gray-200 font-semibold py-1 px-3 rounded-lg text-sm transition">Copy</button>
+                </div>
+                <div id="emailOutput" class="p-4 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-900/50 text-sm md:text-base">
+                    <!-- Generated email body will appear here -->
+                </div>
+            </div>
+            
+            <!-- Instructions -->
+            <div class="bg-yellow-100 dark:bg-yellow-900/30 border-l-4 border-yellow-500 text-yellow-800 dark:text-yellow-200 p-4 rounded-md" role="alert">
+              <div class="flex">
+                <div class="py-1">
+                  <svg class="h-6 w-6 text-yellow-500 mr-4 flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                </div>
+                <div>
+                  <p class="font-bold">Instructions for Perfect Formatting:</p>
+                  <ol class="list-decimal list-inside text-sm mt-1">
+                    <li>Open Gmail manually.</li>
+                    <li>Click 'Copy Subject' and paste it into the subject line.</li>
+                    <li>Click 'Copy Body' and paste it into the email body.</li>
+                    <li>Attach your resume and send!</li>
+                  </ol>
+                </div>
+              </div>
+            </div>
+
+            <div id="copyMessage" class="text-center text-green-500 mt-2 font-medium text-sm" style="display: none;">Copied to clipboard!</div>
+        </div>
+    </div>
+
+    <script>
+        // --- DOM Element References ---
+        const recruiterEmailInput = document.getElementById('recruiterEmail');
+        const companyNameInput = document.getElementById('companyName');
+        const roleNameInput = document.getElementById('roleName');
+        const platformInput = document.getElementById('platform');
+        const generateBtn = document.getElementById('generateBtn');
+        const outputDiv = document.getElementById('output');
+        
+        const subjectOutput = document.getElementById('subjectOutput');
+        const emailOutput = document.getElementById('emailOutput');
+        
+        const copySubjectBtn = document.getElementById('copySubjectBtn');
+        const copyBodyBtn = document.getElementById('copyBodyBtn');
+        const copyMessage = document.getElementById('copyMessage');
+
+        let generatedEmailHTML = '';
+        let generatedSubject = '';
+
+        // --- Event Listener for Generate Button ---
+        generateBtn.addEventListener('click', () => {
+            const recruiterEmail = recruiterEmailInput.value.trim();
+            const companyName = companyNameInput.value.trim();
+            const roleName = roleNameInput.value.trim();
+            const platform = platformInput.value.trim();
+
+            if (!recruiterEmail || !companyName || !roleName || !platform) {
+                alert('Please fill out all fields.');
+                return;
+            }
+
+            // --- Email Subject Template ---
+            generatedSubject = `Application for ${roleName} Position`;
+
+            // --- Email Body Template with HTML formatting ---
+            generatedEmailHTML = `Dear Hiring Team,<br><br>I am writing to express my keen interest in the ${roleName} position at ${companyName}, which I discovered through ${platform}. As a final-year Computer Science student with a strong foundation in machine learning, computer vision, and full-stack development, I am confident that my skills and hands-on project experience align perfectly with the requirements of this role.<br><br>My practical experience is best demonstrated by my projects. For instance, I developed a <strong>Facial Emotion Recognition system</strong> using OpenCV and CNNs, achieving 80% accuracy on a dataset of over 35,000 images. I also built a <strong>Face Recognition System</strong> with 95% real-time accuracy. These projects have provided me with a deep understanding of building and optimizing machine learning models for real-world applications.<br><br>In addition to my ML/AI skills, I am proficient in web technologies like HTML, CSS, JavaScript, and Tailwind CSS, which I used to build my personal portfolio and other projects. My selection for the <strong>Salesforce Launchpad Trainee Program by PwC</strong> further validates my technical aptitude and readiness to contribute to a professional environment.<br><br>I am highly impressed with ${companyName}'s work and am eager to bring my passion for technology and problem-solving to your team.<br><br>My resume is attached for your review, and you can view my projects on my <a href="https://sibasundardas.github.io/portfolio/" style="color: #3b82f6; text-decoration: underline;">Portfolio</a> and <a href="https://github.com/sibasundardas" style="color: #3b82f6; text-decoration: underline;">GitHub</a>. Thank you for your time and consideration. I look forward to the possibility of discussing my application with you further.<br><br>Best regards,<br><br>Siba Sundar Das<br>+91-7653906945<br>sibasundardas2004@gmail.com<br><a href="https://www.linkedin.com/in/siba-sundar-das" style="color: #3b82f6; text-decoration: underline;">LinkedIn</a>`;
+            
+            // Display the generated content
+            subjectOutput.textContent = generatedSubject;
+            emailOutput.innerHTML = generatedEmailHTML;
+            
+            outputDiv.classList.remove('hidden');
+        });
+
+        // --- Utility function to show copy message ---
+        const showCopyMessage = () => {
+            copyMessage.style.display = 'block';
+            setTimeout(() => {
+                copyMessage.style.display = 'none';
+            }, 2000);
+        };
+
+        // --- Event Listener for Copy Subject Button (Reliable Method) ---
+        copySubjectBtn.addEventListener('click', () => {
+            const listener = (ev) => {
+                ev.preventDefault();
+                ev.clipboardData.setData('text/plain', generatedSubject);
+            };
+            document.addEventListener('copy', listener);
+            document.execCommand('copy');
+            document.removeEventListener('copy', listener);
+            showCopyMessage();
+        });
+
+        // --- Event Listener for Copy Body Button (Reliable Method) ---
+        copyBodyBtn.addEventListener('click', () => {
+            const listener = (ev) => {
+                ev.preventDefault();
+                // Copy as HTML
+                ev.clipboardData.setData('text/html', generatedEmailHTML);
+                // Also copy as plain text for fallback
+                ev.clipboardData.setData('text/plain', generatedEmailHTML.replace(/<br\s*[\/]?>/gi, "\n").replace(/<[^>]*>/g, ''));
+            };
+            document.addEventListener('copy', listener);
+            document.execCommand('copy');
+            document.removeEventListener('copy', listener);
+            showCopyMessage();
+        });
+
+    </script>
+</body>
+</html>
